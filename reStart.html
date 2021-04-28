@@ -55,6 +55,15 @@
                     var r = confirm("确定一键重启"+optiontxt+"吗？");
                     if(r==true){
                         alert("正在重启中,请稍等");
+                        var data;
+                        data={
+                            'optiontxt':optiontxt,
+                        };
+                        $.ajax({
+                            type:'post',
+                            dataType:'json',
+                            url:'访问的后台地址'
+                        })
                     }else{
                         alert("取消操作！");
                     }
