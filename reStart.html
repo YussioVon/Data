@@ -47,16 +47,35 @@
                 text-decoration: none;
             }
         </style>
+        <script type="text/javascript">
+            function reStartAll(){
+                var optiontxt = $("#IPChoose").find("option:selected").text();
+                console.log(optiontxt);
+                if (optiontxt!="请选择"){
+                    var r = confirm("确定一键重启"+optiontxt+"吗？");
+                    if(r==true){
+                        alert("正在重启中,请稍等");
+                    }else{
+                        alert("取消操作！");
+                    }
+                }else{
+                    alert("请选择你要重启的服务器！");
+                }
+            }
+            
+        </script>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     </head>
     <body>
         <div id="main">
             <select name="IPChoose" id="IPChoose">
+                <option value="plChoose">请选择</option>
                 <option value="sit184">184</option>
                 <option value="sit185">185</option>
                 <option value="sit186">186</option>
                 <option value="sit187">187</option>
             </select>
-            <a href="#1" id="reStartAll" >重启</a>
+            <a href="#1" id="reStartAll" onclick="reStartAll()">重启</a>
         </div>
     </body>
 </html>
