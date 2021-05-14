@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id='app'>
+            {{show_my_text}}
+            <span v-bind:title='message'>
+                悬停查看消息
+            </span>
+            <button v-on:click='reverseinfo'>fanzhuanxiaoxi</button>
+        </div>
+        <div id="app2">
+            <ol>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
+            <ol>
+                <todo-item
+                    v-for='item in list'
+                    v-bind:todo='item'
+                    v-bind:jey='item.id'
+                ></todo-item>
+            </ol>
+        </div>
+        <script>
+            Vue.component('todo-item',{
+                props:['todo'],
+                template:'<li>{{ todo.text}}</li>'
+            });
+            var app = new Vue({
+                el:'#app',
+                data:{
+                    message:'页面加载于'+new Date().toLocaleString(),
+                    show_my_text:'我是vue'
+                },
+                methods:{
+                    reverseinfo:function(){
+                        this.show_my_text = this.show_my_text.split('').reverse().join('')
+                    }
+                }
+            });
+            var app2 = new Vue({
+                el:'#app2',
+                data:{
+                    todos:[
+                        { text:'1' },
+                        { text:'2'},
+                        { text:'3' }
+                    ],
+                    list:[
+                        { id:0, text:'蔬菜'},
+                        { id:1, text:'肉类'},
+                        { id:2, text:'豆制品'},
+                ]
+                }
+            })
+        </script>
+    </body>
+</html>
