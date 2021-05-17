@@ -24,6 +24,21 @@
                 ></todo-item>
             </ol>
         </div>
+        <div id="app3">
+            <p>Using mustaches: {{ rawHtml }}</p>
+            <p>
+                Using v-html directive: <span v-html='rawHtml'></span>
+            </p>
+            <p v-if="seen">{{ see_me }}</p>
+        </div>
+
+        <div id="example">
+            <p>原: {{ message }}</p>
+            <p>新: {{ reverseMessage }}</p>
+        </div>
+
+
+
         <script>
             Vue.component('todo-item',{
                 props:['todo'],
@@ -54,6 +69,25 @@
                         { id:1, text:'肉类'},
                         { id:2, text:'豆制品'},
                 ]
+                }
+            });
+            var app3 = new Vue({
+                el:'#app3',
+                data:{
+                    rawHtml:'你好，我是v-html',
+                    seen:true,
+                    see_me:'现在你能看到我了'
+                }
+            });
+            var app4 = new Vue({
+                el:'#example',
+                data:{
+                    message:'我是翻转语句的模板',
+                },
+                computed:{
+                    reverseMessage:function(){
+                        return this.message.split('').reverse().join('')
+                    }
                 }
             })
         </script>
